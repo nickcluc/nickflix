@@ -21,8 +21,7 @@ def read_movies
 end
 
 get '/movies' do
-  @movies = read_movies
-  # binding.pry
+  @movies = read_moviesß
   erb :collection
 end
 
@@ -32,6 +31,5 @@ get '/movies/:movie_id' do
   @movie = read_movies.find do |movie|
     movie[:id] == id
   end
-  # binding.pry
   erb :movie
 end
