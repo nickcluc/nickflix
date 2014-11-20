@@ -17,11 +17,31 @@ def read_movies
       studio: row['studio']
     }
   end
-  movies
+  movies.sort_by!{|movie| movie[:title]}
+end
+
+get '/' do
+  redirect '/movies'
 end
 
 get '/movies' do
-  @movies = read_moviesß
+  @movies = read_movies
+  @page = params[:page]
+  @page ||= 1
+  @query = params[:query]
+  @movies = @movies[(@page.to_i-1)*20..(@page.to_i*20)]
+  if params[:query]
+    @matches = []
+    read_movies.each do |movie|
+      # binding.pry
+      if movie[:title].downcase.include?(@query) || movie[:synopsis].to_s.downcase.include?(@query)
+        # binding.pry
+        @matches << movie
+      end
+    end
+    @movies = @matches
+  end
+  # binding.pry
   erb :collection
 end
 

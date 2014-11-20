@@ -16,8 +16,19 @@
     </ul>
   </div>
 
-  <h2>Movie Titles</h2>
+  <div class="search">
+    <form action="/movies" method="get">
+      <label for="query">Search movies</label>
+      <input type="text" name="query" id="query" />
+      <input type="submit" value="Search" />
+    </form>
+  </div>
 
+  <h2>Movie Titles</h2>
+  <% if @query %>
+    <p>Results For: <%= @query %></p>
+  <% end %>
+  
   <div class='list-container'>
     <% @movies.each do |movie| %>
     <ul class='movies'>
@@ -26,6 +37,16 @@
     <% end %>
   </div>
 
+  <div class="back-fwd">
+    <% unless @query %>
+      <% if @page.to_i != 1 %>
+        <a href="/movies?page=<%= (@page.to_i - 1) %>"> Back</a>
+        <a href="/movies?page=<%= (@page.to_i + 1) %>">Next</a>
+      <% else %>
+        <a href="/movies?page=<%= (@page.to_i + 1) %>">Next</a>
+      <% end %>
+    <% end %>
+  </div>
 
 
 </body>
