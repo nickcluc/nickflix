@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Movie Collection</title>
+</head>
+
+<body>
+  <h1>Nickflix</h1>
+  <h2>My Movie Collection</h2>
+
+  <div class="navigation-container">
+    <ul class="nav">
+      <li>
+        <a href = '/movies' ><h4>Movie Catalog</h4></a>
+      </li>
+    </ul>
+  </div>
+
+  <h2>Movie Titles</h2>
+
+  <div class='list-container'>
+    <% @movies.each do |movie| %>
+    <ul class='movies'>
+      <li><a href = "/movies/<%= movie[:id] %>" target="_blank"><%= movie[:title] %></a></li>
+    </ul>
+    <% end %>
+  </div>
+
+
+
+</body>
+</html>
