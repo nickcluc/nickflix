@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Nickflix</title>
+  <link rel="stylesheet" href="/css/foundation.css" media="screen" title="no title" charset="utf-8">
+  <script src="/js/vendor/modernizr.js"></script>
+</head>
+<body>
+  <header>
+
+    <h1>Nickflix</h1>
+    <h2>My Movie Collection</h2>
+    <div class="navigation-container">
+      <div class="nav">
+        <a href = '/movies' class="button expand alert"><h4>Movie Catalog</h4></a>
+      </div>
+    </div>
+
+    <div class="search">
+      <form action="/movies" method="get">
+
+          <div class="row collapse postfix-round">
+            <div class="small-9 columns">
+              <input type="text" placeholder="Search Movies" name="query" id="query" />
+            </div>
+            <div class="small-3 columns">
+              <input type="submit" class="button postfix alert" value="Search" />
+            </div>
+          </div>
+
+      </form>
+    </div>
+
+  </header>
+
+  <%= yield %>
+
+  <footer>
+
+    <div class="back-fwd">
+      <div class="row">
+        <div class="large-3 large-centered columns">
+      <% unless @query %>
+        <% if @page.to_i != 1 %>
+          <a href="/movies?page=<%= (@page.to_i - 1) %>" class="button alert"> Back</a>
+          <a href="/movies?page=<%= (@page.to_i + 1) %>" class="button alert">Next</a>
+        <% else %>
+          <a href="/movies?page=<%= (@page.to_i + 1) %>" class="button alert">Next</a>
+        <% end %>
+      <% end %>
+    </div>
+    </div>
+  </div>
+  </footer>
+
+
+  <script src="/js/vendor/jquery.js"></script>
+  <script src="/js/vendor/fastclick.js"></script>
+  <script src="/js/foundation.min.js"></script>
+  <script>
+    $(function() {
+      $(document).foundation();
+    });
+  </script>
+</body>
+</html>

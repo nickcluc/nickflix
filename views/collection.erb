@@ -1,53 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>My Movie Collection</title>
-</head>
+<h2>Movie Titles</h2>
 
-<body>
-  <h1>Nickflix</h1>
-  <h2>My Movie Collection</h2>
+<% if @query %>
+  <p>Results For: <%= @query %></p>
+<% end %>
 
-  <div class="navigation-container">
-    <ul class="nav">
-      <li>
-        <a href = '/movies' ><h4>Movie Catalog</h4></a>
-      </li>
-    </ul>
-  </div>
 
-  <div class="search">
-    <form action="/movies" method="get">
-      <label for="query">Search movies</label>
-      <input type="text" name="query" id="query" />
-      <input type="submit" value="Search" />
-    </form>
-  </div>
 
-  <h2>Movie Titles</h2>
-  <% if @query %>
-    <p>Results For: <%= @query %></p>
-  <% end %>
-  
-  <div class='list-container'>
-    <% @movies.each do |movie| %>
-    <ul class='movies'>
-      <li><a href = "/movies/<%= movie[:id] %>" target="_blank"><%= movie[:title] %></a></li>
-    </ul>
-    <% end %>
-  </div>
 
-  <div class="back-fwd">
-    <% unless @query %>
-      <% if @page.to_i != 1 %>
-        <a href="/movies?page=<%= (@page.to_i - 1) %>"> Back</a>
-        <a href="/movies?page=<%= (@page.to_i + 1) %>">Next</a>
-      <% else %>
-        <a href="/movies?page=<%= (@page.to_i + 1) %>">Next</a>
+<div class='list-container'>
+  <div class="panel disabled radius">
+    <div class="row">
+      <ul class="no-bullet">
+      <% @movies.each do |movie| %>
+        <div class="large-6 columns">
+          <li>
+            <a href="/movies/<%= movie[:id] %>" data-reveal-id="myModal" data-reveal-ajax="true">
+              <%= movie[:title] %>
+            </a>
+          </li>
+        </div>
       <% end %>
-    <% end %>
+      </ul>
+
+      <div id="myModal" class="reveal-modal" data-reveal>
+        <h2>Awesome. I have it.</h2>
+        <p class="lead">Your couch.  It is mine.</p>
+        <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+        <a class="close-reveal-modal">&#215;</a>
+      </div>
+    </div>
   </div>
-
-
-</body>
-</html>
+</div>
