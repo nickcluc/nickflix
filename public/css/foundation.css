@@ -4388,7 +4388,7 @@ dialog {
     padding-top: 0; } }
 /* Progress Bar */
 .progress {
-  background-color: #f6f6f6;
+  background-color: #454246;
   height: 1.5625rem;
   border: 1px solid white;
   padding: 0.125rem;
